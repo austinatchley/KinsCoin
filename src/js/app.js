@@ -23,11 +23,11 @@ App = {
   initContract: function() {
     $.getJSON('TutorialToken.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract.
-      var TutorialTokenArtifact = data;
-      App.contracts.TutorialToken = TruffleContract(TutorialTokenArtifact);
+      var KinsCoinArtifact = data;
+      App.contracts.KinsCoin = TruffleContract(KinsCoinArtifact);
 
       // Set the provider for our contract.
-      App.contracts.TutorialToken.setProvider(App.web3Provider);
+      App.contracts.KinsCoin.setProvider(App.web3Provider);
 
       // Use our contract to retieve and mark the adopted pets.
       return App.getBalances();
@@ -48,7 +48,7 @@ App = {
 
     console.log('Transfer ' + amount + ' TT to ' + toAddress);
 
-    var tutorialTokenInstance;
+    var kinsCoinInstance;
 
     web3.eth.getAccounts(function(error, accounts) {
       if (error) {
@@ -57,10 +57,10 @@ App = {
 
       var account = accounts[0];
 
-      App.contracts.TutorialToken.deployed().then(function(instance) {
-        tutorialTokenInstance = instance;
+      App.contracts.KinsCoin.deployed().then(function(instance) {
+        kinsCoinInstance = instance;
 
-        return tutorialTokenInstance.transfer(toAddress, amount, {from: account});
+        return kinsCoinInstance.transfer(toAddress, amount, {from: account});
       }).then(function(result) {
         alert('Transfer Successful!');
         return App.getBalances();
@@ -73,7 +73,7 @@ App = {
   getBalances: function(adopters, account) {
     console.log('Getting balances...');
 
-    var tutorialTokenInstance;
+    var kinsCoinInstance;
 
     web3.eth.getAccounts(function(error, accounts) {
       if (error) {
@@ -82,10 +82,10 @@ App = {
 
       var account = accounts[0];
 
-      App.contracts.TutorialToken.deployed().then(function(instance) {
-        tutorialTokenInstance = instance;
+      App.contracts.KinsCoin.deployed().then(function(instance) {
+        kinsCoinInstance = instance;
 
-        return tutorialTokenInstance.balanceOf(account);
+        return kinsCoinInstance.balanceOf(account);
       }).then(function(result) {
         balance = result.c[0];
 
