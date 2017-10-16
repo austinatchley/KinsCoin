@@ -21,7 +21,7 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON('TutorialToken.json', function(data) {
+    $.getJSON('KinsCoin.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract.
       var KinsCoinArtifact = data;
       App.contracts.KinsCoin = TruffleContract(KinsCoinArtifact);
